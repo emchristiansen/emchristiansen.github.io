@@ -1,622 +1,924 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Eric Christiansen, PhD</title>
-  <style>
-    html {
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    body {
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media (max-width: 600px) {
-      body {
-        font-size: 0.9em;
-        padding: 12px;
+<html>
+  <head>
+    <title>Eric Christiansen, PhD</title>
+    <!-- <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    /> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box; /* This ensures padding is included within the element's total width and height */
       }
+
+      .container {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        max-width: 1000px; /* or any other value you see fit */
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .image {
+        flex: 1;
+        padding: 10px;
+      }
+
+      .about {
+        flex: 3;
+        padding: 10px;
+      }
+
+      .section {
+        padding: 20px;
+        border-top: 1px solid #ccc;
+        max-width: 1000px; /* or any other value you see fit */
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+
       h1 {
-        font-size: 1.8em;
+        font-family: "Roboto", sans-serif;
       }
-    }
-    @media print {
-      html {
-        background-color: white;
+
+      h2 {
+        font-family: "Lato", sans-serif;
+        display: flex;
+        justify-content: space-between;
       }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
+
+      h3 {
+        font-family: "Montserrat", sans-serif;
       }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
+
+      .subtitle {
+        display: flex;
+        justify-content: space-between;
       }
-      h2, h3, h4 {
-        page-break-after: avoid;
+
+      .location {
+        text-align: right;
       }
-    }
-    p {
-      margin: 1em 0;
-    }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
-    }
-    img {
-      max-width: 100%;
-    }
-    svg {
-      height: auto;
-      max-width: 100%;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.4em;
-    }
-    h5, h6 {
-      font-size: 1em;
-      font-style: italic;
-    }
-    h6 {
-      font-weight: normal;
-    }
-    ol, ul {
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    li > ol, li > ul {
-      margin-top: 0;
-    }
-    blockquote {
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    code {
-      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    pre {
-      margin: 1em 0;
-      overflow: auto;
-    }
-    pre code {
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    .sourceCode {
-     background-color: transparent;
-     overflow: visible;
-    }
-    hr {
-      background-color: #1a1a1a;
-      border: none;
-      height: 1px;
-      margin: 1em 0;
-    }
-    table {
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    table caption {
-      margin-bottom: 0.75em;
-    }
-    tbody {
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    th {
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    td {
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    header {
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    #TOC li {
-      list-style: none;
-    }
-    #TOC ul {
-      padding-left: 1.3em;
-    }
-    #TOC > ul {
-      padding-left: 0;
-    }
-    #TOC a:not(:hover) {
-      text-decoration: none;
-    }
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    /* CSS for citations */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-      margin-bottom: 0em;
-    }
-    .hanging-indent div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }  </style>
-</head>
-<body>
-<header id="title-block-header">
-<h1 class="title">Eric Christiansen, PhD</h1>
-</header>
-<p>I currently run my own high-frequency trading business. Prior to that
-I was a software engineer at Google Research for 8 years, specializing
-in deep learning and computer vision.</p>
-<p>My entire education and career has been oriented around an interest
-in AGI, excepting the last 18 months in which I pursued an opportunity
-in decentralized finance. Given the recently increased rate of change in
-AI, I am eager to return to the field.</p>
-<h1 id="work-and-research">Work and research</h1>
-<h2 id="july---present-high-frequency-cryptocurrency-trading">2022 July
-- Present: High-frequency cryptocurrency trading</h2>
-<p>I found a market niche in decentralized finance (DeFi)<a href="#fn1"
-class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and
-created a number of bots and smart contracts to exploit it. The
-strategies are all market-neutral (no gambling) and I’ve made over $300K
-in profits so far on volumes of &gt;$10M.</p>
-<p>To win in this space:</p>
-<ol type="1">
-<li>I wrote CUDA code for fast traversal of the <a
-href="https://en.wikipedia.org/wiki/Curve25519">Curve25519</a> elliptic
-curve, using current ideas from math research and weeks of performance
-optimization. I believe it is SOTA, at least for open-source code. That
-code has been running continuously on 8 3080s since 2023 spring.</li>
-<li>I wrote smart contracts to house logic that needs access to
-blockchain state at intermediate points (e.g. when a block is
-half-constructed). Because all smart-contracts have world-readable code,
-to protect my IP I obfuscated my code and introduced subtle arithmetic
-bugs that require particular care to avoid.</li>
-<li>With <a href="https://www.linkedin.com/in/lance-hepler/">Lance
-Hepler</a><a href="#fn2" class="footnote-ref" id="fnref2"
-role="doc-noteref"><sup>2</sup></a>, I designed and implemented a
-particularly tricky dynamic programming algorithm for block creation.
-Here, the goal is to create transactions that induce the block creator
-(a third party) to include your trade in the correct part of a block,
-while killing rival trades and minimizing fees paid to the block
-creator.</li>
-<li>I generalized my trading strategies into a differentiable flow
-model, which I implemented in <a
-href="https://github.com/google/jax">JAX</a> and then bound to Rust via
-<a href="https://github.com/PyO3/pyo3"><code>PyO3</code></a>. This
-formulation discovers trades that were not previously found by my
-heuristics, can be extended to non-market-neutral strategies, and is
-amenable to a variety of gradient optimization techniques.</li>
-</ol>
-<p>Versions of the system were written in TypeScript, then OCaml, then
-Rust with an OCaml sidecar. The whole system runs on a
-geographically-distributed Kubernetes cluster on a low-cost cloud
-provider<a href="#fn3" class="footnote-ref" id="fnref3"
-role="doc-noteref"><sup>3</sup></a>.</p>
-<h2 id="april---2022-july-senior-software-engineer-google-research">2014
-April - 2022 July: Senior Software Engineer, Google Research</h2>
-<p>I worked in Google Research under <a
-href="https://research.google/people/PhilipNelson/">Philip Nelson</a>,
-<a href="https://research.google/people/kevin-p-murphy/">Kevin
-Murphy</a>, and <a
-href="https://research.google/people/sergey-ioffe/">Sergey
-Ioffe</a>.</p>
-<p>In that time I hosted 3 interns:</p>
-<ol type="1">
-<li><a href="https://research.google/people/samuel-j-yang/">Samuel
-Yang</a>, who later joined Research.</li>
-<li><a href="https://www.andreesteva.com/">Andre Esteva</a>, who has
-since been published multiple times in Nature and is the founder of a <a
-href="https://artera.ai/">AI medical diagnostics company</a>.</li>
-<li><a
-href="https://www.linkedin.com/in/william-liam-fedus-26547811/">Liam
-Fedus</a>, who later joined Research and then joined OpenAI to help
-create ChatGPT.</li>
-</ol>
-<p>I also:</p>
-<ol type="1">
-<li>Interviewed 100s of candidates.</li>
-<li>Earned the “expert” designation in Google’s internal StackExchange
-clone for answering questions tagged #tensorflow, #python, #tpu, and
-#spanner.</li>
-<li>Got readability for Golang, C++, and Python.</li>
-<li>Finished my PhD <span class="citation"
-data-cites="christiansen2018local">(Christiansen, 2018)</span>.</li>
-</ol>
-<p>Note, I quit six months before the first layoffs in 2023.</p>
-<p>Here are some selected projects:</p>
-<h3 id="example-selection">2018 - 2020: Example Selection</h3>
-<p>Example Selection was my project to speed training of deep networks
-by dynamically and automatically adjusting the train set data
-distribution. It provided a free 30% reduction in training time for some
-tasks.</p>
-<p>The main idea was to reduce the variance of the SGD gradient estimate
-via importance sampling. The importance weights were estimated on the
-fly via a concurrently-trained helper network, using current model
-parameters. Interestingly, the curricula produced by the system were
-often human-interpretable and provided insight into the task.</p>
-<p>Other than the proper design of the helper network, the main
-difficulty was to make the system fast, as it needed to feed a TPU
-without bottlenecking it<a href="#fn4" class="footnote-ref" id="fnref4"
-role="doc-noteref"><sup>4</sup></a>. The final artifact which achieved
-this was about 50K lines of C++, Python, and SQL.</p>
-<p>Unfortunately, at the time TPUs were plentiful and the extra lifting
-required to integrate the system was not seen by management as worth it,
-causing it to be killed.</p>
-<h3 id="hyperparameter-tuning">2016: Hyperparameter tuning</h3>
-<p>I created Google’s first hyperparameter tuning API for deep learning,
-which was later rewritten and made a cloud product by the Vizier team
-led by <a href="https://research.google/people/daniel-golovin/">Daniel
-Golovin</a>. At the time, the Vizier team already provided black-box
-optimizers for other Google products, but the API was not suitable for
-deep learning; my contribution was a middleware library, e.g. to define
-search spaces and manage the lifecycles of TensorFlow experiments.</p>
-<p>Fun fact: At the time I became the biggest user of Brain compute at
-Google, as I used the system to tune the hyperparameters of my own
-models. (But don’t worry, all the resources were low-priority “free”
-compute, following the night around the world.)</p>
-<h3 id="in-silico-labeling">2014 - 2018: <em>In Silico</em>
-Labeling</h3>
-<p><em>In Silico</em> Labeling was a project that used deep learning to
-predict fluorescence images from transmitted-light images of unlabeled
-cells. It gives life scientists many of the benefits of fluorescence
-labeling without most of the costs; see <a
-href="https://blog.research.google/2018/04/seeing-more-with-in-silico-labeling-of.html">this
-blog post</a> and <a
-href="https://www.sciencedirect.com/science/article/pii/S0092867418304562">this
-editorial</a> for context.</p>
-<p>I originated the idea and led the effort across an 18-person team at
-Google, Verily, Harvard, and Gladstone. The work consisted of target
-identification, experimental design, data collection (creating samples
-and running robotic microscopes), data collation and cleaning (terabytes
-of gigapixel images), and model development.</p>
-<p>At the time, the SOTA for image-to-image models wasn’t good enough,
-due to limited spatial context, artifacts caused by scale changes, and
-convolution edge effects. So, I created a <a
-href="https://ars.els-cdn.com/content/image/1-s2.0-S0092867418303647-mmc2.pdf">new
-architecture</a> (second two figures) carefully designed to address
-these issues, resulting in a 25% loss reduction and qualitatively better
-images.</p>
-<p>This work was <a
-href="https://www.sciencedirect.com/science/article/pii/S0092867418303647">published
-in Cell</a> <span class="citation"
-data-cites="christiansen2018silico">(Christiansen et al., 2018)</span>,
-<a href="https://github.com/google/in-silico-labeling">open sourced</a>,
-and led to the creation of two new projects at Verily.</p>
-<h3 id="miscellaneous">Miscellaneous</h3>
-<ol type="1">
-<li>2022: Patent for <em>In Silico</em> Labeling <span class="citation"
-data-cites="nelson2022processing">(Nelson et al., 2022)</span>.</li>
-<li>2021 - 2022: Client-driven development of the internal scalable loss
-library inspired by <span class="citation"
-data-cites="pmlr-v54-eban17a">(Eban et al., 2017)</span>.</li>
-<li>2020 - 2022: Various work on calibration and ensemble methods, which
-coincided with internal infrastructure I built to support them <span
-class="citation" data-cites="wang2020wisdom">(Wang et al., 2022)</span>.
-That infrastructure was used to create the motion blur model on Pixel
-devices.</li>
-<li>2018 - 2019: Neural architecture search benchmark <span
-class="citation" data-cites="ying2019bench">(Ying et al.,
-2019)</span>.</li>
-<li>2018: Deep learning for automation of one the problems we
-encountered in <em>In Silico</em> Labeling <span class="citation"
-data-cites="yang2018assessing">(Yang et al., 2018)</span>.</li>
-<li>2017: Wrote <a
-href="https://github.com/tensorflow/tensorflow/tree/ff5c276adf025fc498ccd81ae240bb0ba6402f3a/tensorflow/contrib/labeled_tensor">LabeledTensor</a>
-with <a href="https://research.google/people/stephan-hoyer/">Stephan
-Hoyer</a>, a TensorFlow library for endowing tensors with semantically
-meaningful dimension and coordinate labels.</li>
-</ol>
-<h2 id="intern-willow-garage">2012 - 2013: Intern, Willow Garage</h2>
-<p>In 2012 June I started a 3-month research internship at <a
-href="https://en.wikipedia.org/wiki/Willow_Garage">Willow Garage</a>,
-working in robot perception. I liked it so much that I twice extended
-the internship, finally ending in 2013 March.</p>
-<p>While there, I:</p>
-<ol type="1">
-<li>Developed a similarity-invariant version of the LUCID descriptor
-<span class="citation" data-cites="ziegler2012locally">(Ziegler et al.,
-2012)</span>. This new descriptor, <a
-href="https://github.com/emchristiansen/eLUCID">eLUCID</a>, was
-especially fast on mobile devices.</li>
-<li>Developed a match-time covariant local descriptor <span
-class="citation" data-cites="christiansen2013match">(Christiansen et
-al., 2013)</span> which is extremely robust to changes in rotation and
-scale. This was my first exposure to large-scale compute, as I used the
-Willow Garage cluster to optimize the descriptor parameters.</li>
-<li>Created Billy Pilgrim, an open-source evaluation framework for local
-descriptors, intended to replace <a
-href="https://www.vlfeat.org/benchmarks/">VLBenchmarks</a>. It is broken
-into a backend (<a
-href="https://github.com/emchristiansen/Billy">Billy</a>) and a frontend
-(<a href="https://github.com/emchristiansen/Pilgrim">Pilgrim</a>). The
-name is an unfortunate reference to <a
-href="https://en.wikipedia.org/wiki/Slaughterhouse-Five">Slaughterhouse-Five</a>.</li>
-<li>With Andrey Pavlenko and Andrey Kamaev of Itseez<a href="#fn5"
-class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, I
-added Java to the list of supported languages for <a
-href="https://opencv.org/">OpenCV</a> by modifying the interface
-generator they used for other languages. I did it so I could use Scala<a
-href="#fn6" class="footnote-ref" id="fnref6"
-role="doc-noteref"><sup>6</sup></a> for research 😉.</li>
-</ol>
-<p>While at Willow, I also organized two programs for the wider benefit
-of the company. First, I taught a twice-weekly CrossFit class, using
-equipment Willow purchased for the purpose. Second, when Willow had to
-lay off its kitchen staff, I organized company-wide catering, paid for
-by the employees. This inspired me to create Food for Thought at UCSD
-(see Education).</p>
-<h2 id="and-2010-summers-intern-google">2011 and 2010 Summers: Intern,
-Google</h2>
-<p>I had two 3-month internships at Google in the summers of 2011 and
-2010. In 2011, I was at the LA and NYC offices, working on Google
-Goggles research and backend infrastructure including fast nearest
-neighbor methods. In 2010, I was at the Mountain View office, helping
-the webcrawler to detect and appropriately handle duplicate
-websites.</p>
-<h1 id="education">Education</h1>
-<h2 id="phd-in-cs-uc-san-diego">2008 - 2018: PhD in CS, UC San
-Diego</h2>
-<p>I began at UCSD in 2008, where my first focus was machine learning,
-working with <a href="https://cseweb.ucsd.edu/~elkan/">Charles
-Elkan</a>. During this time, I attended the <a
-href="http://mlss.cc/">Machine Learning Summer School</a> at Cambridge
-University, where I presented a paper on theoretical machine learning
-<span class="citation" data-cites="christiansen2013upper">(Christiansen,
-2013)</span>.</p>
-<p>In 2009, I switched my focus to computer vision with <a
-href="https://tech.cornell.edu/people/serge-belongie/">Serge
-Belongie</a>. My initial thesis area was in local descriptor methods,
-e.g. <a
-href="https://en.wikipedia.org/wiki/Scale-invariant_feature_transform">SIFT</a>,
-which are used in computer vision to compare local regions of images.
-They are building blocks for many computer vision applications,
-including structure-from-motion and object detection and
-recognition.</p>
-<p>Between 2010 and 2013, I did a total of three internships at <a
-href="https://en.wikipedia.org/wiki/Willow_Garage">Willow Garage</a> and
-Google amounting to 16 months.</p>
-<p>Inspired by the internships, I developed the Food for Thought (FFT)
-program with the support of my advisor Serge. FFT provided Google-style
-free food to all members of our lab at UCSD. I believe it significantly
-improved lab morale and communication.</p>
-<p>I also did some teaching:</p>
-<ul>
-<li>2014: TA for CSE 202, graduate algorithms (UCSD)</li>
-<li>2013: Google Summer of Code mentor for OpenCV</li>
-<li>2013: TA for CSE 255, data mining (UCSD)</li>
-<li>2010: TA for CSE 252B, graduate computer vision (UCSD)</li>
-<li>2010: TA for CSE 202, graduate algorithms (UCSD)</li>
-<li>2009: TA for CSE 105, undergraduate computability (UCSD)</li>
-</ul>
-<p>In 2014 I joined Google Research and continued my PhD part-time,
-while pivoting to focus on deep learning applications in computer
-vision. I finished in 2018 <span class="citation"
-data-cites="christiansen2018local">(Christiansen, 2018)</span>.</p>
-<p>See <a
-href="https://scholar.google.com/citations?user=Sz2GtLoAAAAJ">Google
-Scholar</a> for research from that period.</p>
-<h2 id="math-and-cs-swarthmore-college">2004 - 2008: Math and CS,
-Swarthmore College</h2>
-<p>While an undergrad at Swarthmore College, I worked in the summers
-with <a
-href="https://jacobsschool.ucsd.edu/giving/founding-faculty-and-emeriti/gary-cottrell">Gary
-Cottrell</a> on a variety of cognitive science topics, thanks to whom I
-developed an interest in machine vision and biologically inspired
-models.</p>
-<p>In 2008 I graduated with honors with a BA in math and a minor in
-computer science.</p>
-<h1 id="miscellaneous-1">Miscellaneous</h1>
-<h2 id="things-i-do-sometimes">Things I do sometimes</h2>
-<ol type="1">
-<li>CrossFit</li>
-<li>Running</li>
-<li>Burning Man</li>
-<li><a href="https://www.aidslifecycle.org/">AIDS/LifeCycle</a></li>
-</ol>
-<h2 id="books-i-liked">Books I liked</h2>
-<ol type="1">
-<li><a href="https://hpmor.com/">Harry Potter and the Methods of
-Rationality</a></li>
-<li><a
-href="https://www.goodreads.com/book/show/23444482-the-traitor-baru-cormorant">The
-Traitor Baru Cormorant</a></li>
-<li><a
-href="https://www.goodreads.com/book/show/61535.The_Selfish_Gene">The
-Selfish Gene</a></li>
-<li><a
-href="https://www.goodreads.com/en/book/show/23692271">Sapiens</a></li>
-</ol>
-<h2 id="non-research-interests">Non-research interests</h2>
-<ol type="1">
-<li>Ethereum</li>
-<li><a href="https://en.wikipedia.org/wiki/Tezos">Tezos</a></li>
-<li>Rust</li>
-</ol>
-<h2 id="proof-that-i-like-to-code">Proof that I like to code</h2>
-<p>During my PhD, I kept sane by working on a number of side-projects,
-for example:</p>
-<ul>
-<li><a
-href="https://github.com/emchristiansen/PersistentMap">PersistentMap</a>:
-A type-safe, boilerplate-free, key-value store for Scala.</li>
-<li><a href="https://github.com/emchristiansen/salve">salve</a>: A macro
-and template library for adding some functional programming ideas to
-C++.</li>
-<li><a href="https://github.com/emchristiansen/sbt-latex">sbt-latex</a>:
-A build management tool for LaTeX.</li>
-<li><a
-href="https://github.com/emchristiansen/CharikarLSH">CharikarLSH</a>: An
-implementation of Moses Charikar’s method for approximate nearest
-neighbor retrieval, in C++. Note, techniques like this are how vector
-databases work.</li>
-<li><a href="https://github.com/emchristiansen/mbtree">mbtree</a>: An
-implementation of metric-ball trees for nearest neighbor search, in
-Scala.</li>
-<li><a
-href="https://github.com/emchristiansen/DistanceLSH">DistanceLSH</a>: An
-implementation of a metric hashing for nearest neighbor search, in
-Haskell.</li>
-</ul>
-<p>Unfortunately I can’t show more recent side projects, as they were
-internal at Google and are secret in high frequency trading.</p>
-<h1 id="contact">Contact</h1>
-<h2 id="email">Email</h2>
-<p>ericmartinchristiansen at gmail dot com</p>
-<h2 id="web">Web</h2>
-<ol type="1">
-<li><a href="https://github.com/emchristiansen">GitHub</a></li>
-<li><a
-href="https://scholar.google.com/citations?user=Sz2GtLoAAAAJ">Google
-Scholar</a></li>
-</ol>
-<h1 id="references">References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent"
-data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-christiansen2013upper" class="csl-entry" role="listitem">
-Christiansen, E. (2013). An upper bound on prototype set size for
-condensed nearest neighbor. <em>arXiv Preprint arXiv:1309.7676</em>.
-</div>
-<div id="ref-christiansen2018local" class="csl-entry" role="listitem">
-Christiansen, E. (2018). <em><span>F</span>rom local descriptors to in
-silico labeling</em> [PhD thesis]. University of California, San Diego.
-</div>
-<div id="ref-christiansen2013match" class="csl-entry" role="listitem">
-Christiansen, E., Rabaud, V., Ziegler, A., Kriegman, D., &amp; Belongie,
-S. (2013). Match-time covariance for descriptors. <em>British Machine
-Vision Conference, <span>BMVC</span> 2013, Bristol, UK, September 9-13,
-2013</em>, 12.1–12.11. <a
-href="https://doi.org/10.5244/C.27.12">https://doi.org/10.5244/C.27.12</a>
-</div>
-<div id="ref-christiansen2018silico" class="csl-entry" role="listitem">
-Christiansen, E., Yang, S. J., Ando, D. M., Javaherian, A., Skibinski,
-G., Lipnick, S., Mount, E., O’Neil, A., Shah, K., Lee, A. K., Goyal, P.,
-Fedus, W., Poplin, R., Esteva, A., Berndl, M., Rubin, L. L., Nelson, P.,
-&amp; Finkbeiner, S. (2018). In silico labeling: Predicting fluorescent
-labels in unlabeled images. <em>Cell</em>, <em>173</em>(3), 792–803.e19.
-https://doi.org/<a
-href="https://doi.org/10.1016/j.cell.2018.03.040">https://doi.org/10.1016/j.cell.2018.03.040</a>
-</div>
-<div id="ref-pmlr-v54-eban17a" class="csl-entry" role="listitem">
-Eban, E., Schain, M., Mackey, A., Gordon, A., Rifkin, R., &amp; Elidan,
-G. (2017). <span>S</span>calable <span>L</span>earning of
-<span>N</span>on-decomposable <span>O</span>bjectives. In A. Singh &amp;
-X. (Jerry) Zhu (Eds.), <em>Proceedings of the 20th international
-conference on artificial intelligence and statistics,
-<span>AISTATS</span> 2017, 20-22 april 2017, fort lauderdale, FL,
-<span>USA</span></em> (Vol. 54, pp. 832–840). <span>PMLR</span>.
-</div>
-<div id="ref-nelson2022processing" class="csl-entry" role="listitem">
-Nelson, P. C., Christiansen, E., Berndl, M., &amp; Frumkin, M. (2022).
-<em><span>P</span>rocessing cell images using neural networks</em>.
-</div>
-<div id="ref-wang2020wisdom" class="csl-entry" role="listitem">
-Wang, X., Kondratyuk, D., Christiansen, E., Kitani, K. M.,
-Movshovitz-Attias, Y., &amp; Eban, E. (2022). <span>W</span>isdom of
-<span>C</span>ommittees: <span>A</span>n <span>O</span>verlooked
-<span>A</span>pproach <span>T</span>o <span>F</span>aster and
-<span>M</span>ore <span>A</span>ccurate <span>M</span>odels. <em>The
-Tenth International Conference on Learning Representations,
-<span>ICLR</span> 2022, Virtual Event, April 25-29, 2022</em>.
-</div>
-<div id="ref-yang2018assessing" class="csl-entry" role="listitem">
-Yang, S. J., Berndl, M., Ando, D. M., Barch, M., Narayanaswamy, A.,
-Christiansen, E., Hoyer, S., Roat, C., Hung, J., Rueden, C. T., Shankar,
-A., Finkbeiner, S., &amp; Nelson, P. (2018). <span>A</span>ssessing
-microscope image focus quality with deep learning. <em><span>BMC</span>
-Bioinformatics</em>, <em>19</em>(1), 77:1–77:9. <a
-href="https://doi.org/10.1186/S12859-018-2087-4">https://doi.org/10.1186/S12859-018-2087-4</a>
-</div>
-<div id="ref-ying2019bench" class="csl-entry" role="listitem">
-Ying, C., Klein, A., Christiansen, E., Real, E., Murphy, K., &amp;
-Hutter, F. (2019). <span>NAS-Bench-101</span>: Towards reproducible
-neural architecture search. <em><span class="nocase">International
-Conference on Machine Learning</span></em>, 7105–7114.
-</div>
-<div id="ref-ziegler2012locally" class="csl-entry" role="listitem">
-Ziegler, A., Christiansen, E., Kriegman, D. J., &amp; Belongie, S. J.
-(2012). <span>L</span>ocally <span>U</span>niform
-<span>C</span>omparison <span>I</span>mage <span>D</span>escriptor. In
-P. L. Bartlett, F. C. N. Pereira, C. J. C. Burges, L. Bottou, &amp; K.
-Q. Weinberger (Eds.), <em>Advances in neural information processing
-systems 25: 26th annual conference on neural information processing
-systems 2012. Proceedings of a meeting held december 3-6, 2012, lake
-tahoe, nevada, united states</em> (pp. 1–9).
-</div>
-</div>
-<section id="footnotes" class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Decentralized finance (DeFi) is on-chain finance
-mediated by smart contracts.<a href="#fnref1" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Lance is a friend who joined for 3 months between
-jobs.<a href="#fnref2" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>This low-cost cloud provider was the origin for one of
-the most annoying bugs I’ve recently experienced, related to VLAN <a
-href="https://en.wikipedia.org/wiki/Maximum_transmission_unit">MTU
-mismatches</a> and randomly dropped packets.<a href="#fnref3"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>I believe the bus was around 12.5 GB/s at the time or
-83K ImageNet examples / second.<a href="#fnref4" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>At the time an OpenCV core contributor, later acquired
-by Intel.<a href="#fnref5" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>I’ve had an interest in functional programming ever
-since I took <a href="https://ranjitjhala.github.io/">Ranjit Jhala</a>’s
-programming languages class at UCSD.<a href="#fnref6"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
-</body>
+
+      .role {
+        font-style: italic;
+        font-size: 1.2em;
+      }
+
+      .date {
+        font-style: italic;
+        font-size: 1.2em;
+        text-align: right;
+      }
+
+      .multicolumns {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        flex: 1;
+        padding: 0 10px; /* Optional: Adds some space between the columns */
+      }
+
+      .socials {
+        /* font-style: italic; */
+        font-family: "Montserrat", sans-serif;
+        /* font-size: 0.9em; */
+        text-align: left;
+        display: flex;
+        justify-content: left;
+        gap: 10px;
+        margin-top: 0.3em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="image">
+        <img src="eric.jpg" alt="Profile Image" style="width: 100%" />
+      </div>
+      <div class="about">
+        <h1>Eric Christiansen, PhD</h1>
+        <span class="role">
+          Software engineer experienced in AI research and infrastructure.
+        </span>
+        <div class="socials">
+          <a href="https://github.com/emchristiansen">GitHub</a>
+          |
+          <a href="https://scholar.google.com/citations?user=Sz2GtLoAAAAJ"
+            >Scholar</a
+          >
+          |
+          <a href="https://www.linkedin.com/in/ericmc-ai">LinkedIn</a>
+          | eric at emchristiansen dot com
+        </div>
+
+        <p>
+          I currently run my own high-frequency trading business. Prior to that
+          I was a software engineer at Google Research for 8 years, specializing
+          in deep learning and computer vision.
+        </p>
+        <p>
+          My entire education and career has been oriented around an interest in
+          AGI, excepting the last 18 months in which I pursued an opportunity in
+          high frequency trading. Given the recently increased rate of change in
+          AI, I am eager to return to the field.
+        </p>
+        <p>
+          For a condensed version of this website, please ask for my resume.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h1 id="work-and-research">Work and research</h1>
+      <h2>
+        <span class="title">High-frequency trading</span>
+      </h2>
+      <div class="subtitle">
+        <span class="role">Solo Entrepreneur</span>
+        <span class="date">2022 July - Present</span>
+      </div>
+      <p>
+        I found a market niche in the high frequency trading space and created
+        an autonomous trading system that has made >$300K profit so far on >$10M
+        volume.
+      </p>
+      <p>
+        Due to the sensitive nature of this work, details are available upon
+        request, but some highlights are:
+      </p>
+      <ul>
+        <li>
+          I wrote CUDA code that is 1000× faster than CPU SOTA for a particular
+          set of math problems, drawing from textbooks, reference
+          implementations, and math research papers. That code has been running
+          continuously on 8 NVIDIA 3080s since 2023 Spring.
+        </li>
+        <li>
+          I designed and implemented<a href="#fn_lance" class="footnote-ref"
+            ><sup>1</sup></a
+          >
+          a particularly tricky dynamic programming algorithm, reducing
+          optimization times from seconds to tens of milliseconds. The algorithm
+          is used for discovering optimal trading strategies, i.e. to determine
+          how to arrange a set of trades, and at what priorities, to maximize
+          revenue while minimizing fees and blocking rival trades.
+        </li>
+        <li>
+          I generalized my trading strategies into a differentiable flow model,
+          which I implemented in
+          <a href="https://github.com/google/jax">JAX</a> and then bound to Rust
+          via <a href="https://github.com/PyO3/pyo3"><code>PyO3</code></a
+          >. This formulation discovers trades that were not previously found by
+          prior heuristics, can be extended to non-market-neutral strategies,
+          and is amenable to a variety of gradient optimization techniques.
+        </li>
+      </ul>
+      <p>
+        Versions of the system were written in TypeScript, then OCaml, then Rust
+        with an OCaml sidecar. The whole system runs on a
+        geographically-distributed Kubernetes cluster on a low-cost cloud
+        provider<a href="#fn_mtu" class="footnote-ref"><sup>2</sup></a
+        >.
+      </p>
+
+      <h2 id="april---2022-july-senior-software-engineer-google-research">
+        <span class="title">Google Research</span>
+        <span class="location">Mountain View, CA</span>
+      </h2>
+      <div class="subtitle">
+        <span class="role">Senior Software Engineer</span>
+        <span class="date">2014 April - 2022 July</span>
+      </div>
+      <p>
+        In Google Research, I worked on AI research and infrastructure under
+        <a href="https://research.google/people/PhilipNelson/">Philip Nelson</a
+        >,
+        <a href="https://research.google/people/kevin-p-murphy/">Kevin Murphy</a
+        >, and
+        <a href="https://research.google/people/sergey-ioffe/">Sergey Ioffe</a>.
+      </p>
+      <p>In that time I hosted 3 interns:</p>
+      <ul type="1">
+        <li>
+          <a href="https://research.google/people/samuel-j-yang/">Samuel Yang</a
+          >, who later joined Research.
+        </li>
+        <li>
+          <a href="https://www.andreesteva.com/">Andre Esteva</a>, who has since
+          been published multiple times in <em>Nature</em> and is the founder of
+          an <a href="https://artera.ai/">AI medical diagnostics company</a>.
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/william-liam-fedus-26547811/"
+            >Liam Fedus</a
+          >, who later joined Research and then joined OpenAI to help create
+          ChatGPT.
+        </li>
+      </ul>
+      <p>I also:</p>
+      <ul type="1">
+        <li>Interviewed 100s of candidates.</li>
+        <li>
+          Earned the “expert” designation in Google’s internal StackExchange
+          clone (YAQS) for answering questions tagged #tensorflow, #python,
+          #tpu, and #spanner.
+        </li>
+        <li>Got readability for Golang, C++, and Python.</li>
+        <li>Finished <a href="#ref_thesis">my PhD</a>.</li>
+      </ul>
+      <p>Note, I quit six months before the first layoffs in 2023.</p>
+      <p>Here are some selected projects:</p>
+
+      <h3 id="in-silico-labeling"><em>In Silico</em> Labeling</h3>
+      <p>
+        <em>In Silico</em> Labeling was a project that used deep learning to
+        predict fluorescence images from transmitted-light images of unlabeled
+        cells. It gives life scientists many of the benefits of fluorescence
+        labeling without most of the costs; see
+        <a
+          href="https://blog.research.google/2018/04/seeing-more-with-in-silico-labeling-of.html"
+          >this blog post</a
+        >
+        and
+        <a
+          href="https://www.sciencedirect.com/science/article/pii/S0092867418304562"
+          >this editorial</a
+        >
+        for context.
+      </p>
+      <p>
+        I originated the idea and led the effort across an 18-person team at
+        Google, Verily, Harvard, and Gladstone. The work consisted of target
+        identification, experimental design, sample creation, data collection
+        using robotic microscopes, large scale distributed image processing, and
+        model development.
+      </p>
+      <p>
+        At the time, the SOTA for image-to-image models wasn’t good enough, due
+        to limited spatial context, artifacts caused by scale changes, and
+        convolution edge effects. So, I created a
+        <a
+          href="https://ars.els-cdn.com/content/image/1-s2.0-S0092867418303647-mmc2.pdf"
+          >new architecture</a
+        >
+        (second two figures) carefully designed to address these issues,
+        resulting in a 25% loss reduction and qualitatively better images.
+      </p>
+      <p>
+        This work was
+        <a href="#ref_silico">published in <em>Cell</em></a
+        >, the
+        <a
+          href="https://blog.research.google/2018/04/seeing-more-with-in-silico-labeling-of.html"
+        >
+          the Google Blog</a
+        >, and
+        <a href="https://github.com/google/in-silico-labeling">open sourced</a>.
+        It was also <a href="#ref_processing">patented</a> and led to the
+        creation of two new projects at Verily. Later work
+        <a href="ref_assessing"
+          >automated quality control in similar pipelines</a
+        >.
+      </p>
+
+      <p>
+        For this project I used C++, Golang, Python,
+        <a href="https://flume.apache.org/">Flume</a>, and TensorFlow.
+      </p>
+
+      <!-- Created Google’s first hyperparameter tuning API for deep learning, by
+providing a convenient interface to black box optimizers and infrastructure to manage experiment lifecycles. This
+was the first version of what became the Vertex AI hyperparameter tuner. Used C++ and Python. -->
+
+      <h3 id="hyperparameter-tuning">Hyperparameter tuning</h3>
+      <p>
+        I created Google's first hyperparameter tuning API for deep learning, by
+        providing a convenient interface to black box optimizers and
+        infrastructure to manage experiment lifecycles. This was the first
+        version of what became the
+        <a
+          href="https://cloud.google.com/vertex-ai/docs/training/hyperparameter-tuning-overview"
+          >Vertex AI hyperparameter tuner</a
+        >, a product of the Vizier team led by
+        <a href="https://research.google/people/daniel-golovin/"
+          >Daniel Golovin</a
+        >.
+      </p>
+      <p>
+        At the time, the Vizier team already provided black-box optimizers for
+        other Google products (e.g. Ads), but the API was not immediately suited
+        to deep learning. I created a service and an API the user could use to
+        define a search space along with hooks into their training and
+        evaluation code. My infrastructure then ran the optimization, including
+        selecting the next experiment, scheduling it, collecting evaluation
+        data, dealing with failures, etc.
+      </p>
+      <p>
+        Fun fact: At the time I became the biggest user of Brain compute at
+        Google, as I used the system to tune the hyperparameters of my own
+        models. This compute was all low-priority "free" compute obtained by
+        migrating my jobs around the globe to follow the night, taking advantage
+        of overcapacity.
+      </p>
+      <p>
+        For this project I used C++, Python, and of course GCL<a
+          href="#fn_gcl"
+          class="footnote-ref"
+          ><sup>3</sup></a
+        >.
+      </p>
+
+      <h3 id="example-selection">Example selection</h3>
+      <p>
+        I built a system that trains deep networks faster by dynamically
+        adjusting the train set data distribution (<em>cf.</em> curriculum
+        learning), providing a nearly free 30% training speedup on tasks with
+        imbalances in example difficulty, such as image classification.
+      </p>
+      <p>
+        The main idea was to reduce the variance of the SGD gradient estimate
+        via importance sampling. The importance weights were estimated on the
+        fly via a concurrently-trained helper network, using current model
+        parameters. Interestingly, the curricula produced by the system were
+        often human-interpretable and provided insight into the task.
+      </p>
+      <p>
+        Other than the proper design of the helper network, the main difficulty
+        was to make the system fast, as it needed to feed TPUs without
+        bottlenecking them<a href="#fn_tpu"><sup>4</sup></a
+        >. The final artifact was a distributed system consisting of data
+        loaders, annotators, the caching sampler, and the concurrently-trained
+        helper network, all communicating via a cluster-local DB, achieved in
+        about 50K lines of C++, Python, SQL, and GCL.
+      </p>
+      <p>
+        Unfortunately, at the time TPUs were plentiful and the extra lifting
+        required to integrate the system was not seen by management as worth it,
+        causing it to be deprioritized.
+      </p>
+
+      <h3 id="miscellaneous">Miscellaneous</h3>
+      <ul type="1">
+        <li>
+          I published on
+          <a href="#ref_neural">neural architecture search</a> and
+          <a href="#ref_calibration">model calibration and ensembling</a>.
+        </li>
+        <li>
+          I created an internal JAX and TensorFlow library to automate some of
+          the work in model calibration and ensembling. That library was used to
+          create the
+          <a
+            href="https://www.androidpolice.com/motion-mode-on-the-pixel-6-speed/"
+            >motion blur model</a
+          >
+          on Pixel devices.
+        </li>
+        <li>
+          I ported the internal TensorFlow library based on
+          <a href="https://proceedings.mlr.press/v54/eban17a.html"
+            >this paper to JAX</a
+          >, added features requested by clients, and maintained it.
+        </li>
+        <li>
+          I wrote
+          <a
+            href="https://github.com/tensorflow/tensorflow/tree/ff5c276adf025fc498ccd81ae240bb0ba6402f3a/tensorflow/contrib/labeled_tensor"
+            >LabeledTensor</a
+          >
+          with
+          <a href="https://research.google/people/stephan-hoyer/"
+            >Stephan Hoyer</a
+          >, a TensorFlow library for endowing tensors with semantically
+          meaningful dimension and coordinate labels. Note the author
+          attributions on GitHub are incorrect here, due to the way in which
+          internal code was synced to GitHub; I wrote about half of the code.
+        </li>
+      </ul>
+
+      <h2>
+        <span class="title">Willow Garage</span>
+        <span class="location">Menlo Park, CA</span>
+      </h2>
+      <div class="subtitle">
+        <span class="role">PhD Intern</span>
+        <span class="date">2012 - 2013 (9 months) </span>
+      </div>
+      <p>
+        In 2012 June I started a 3-month research internship at
+        <a href="https://en.wikipedia.org/wiki/Willow_Garage">Willow Garage</a>,
+        working in robot perception. I liked it so much that I twice extended
+        the internship, finally ending in 2013 March.
+      </p>
+
+      <p>While there, I:</p>
+      <ul>
+        <li>
+          Developed a similarity-invariant version of the
+          <a href="#ref_locally">LUCID descriptor</a>, called
+          <a href="https://github.com/emchristiansen/eLUCID">eLUCID</a>, which
+          was especially fast on mobile devices (C++).
+        </li>
+        <li>
+          Developed a
+          <a href="#ref_match">similarity-covariant local descriptor</a>. This
+          was my first exposure to large-scale compute, as I used the Willow
+          Garage cluster to optimize the descriptor parameters (Figure 4) (Scala
+          and C++).
+        </li>
+        <li>
+          Created Billy Pilgrim, an open-source evaluation framework for local
+          descriptors, intended to replace
+          <a href="https://www.vlfeat.org/benchmarks/">VLBenchmarks</a>. It is
+          broken into a backend (<a
+            href="https://github.com/emchristiansen/Billy"
+            >Billy</a
+          >) and a frontend (<a href="https://github.com/emchristiansen/Pilgrim"
+            >Pilgrim</a
+          >). The name is an unfortunate reference to
+          <a href="https://en.wikipedia.org/wiki/Slaughterhouse-Five"
+            >Slaughterhouse-Five</a
+          >
+          (Scala and C++).
+        </li>
+        <li>
+          With Andrey Pavlenko and Andrey Kamaev of Itseez<a href="#fn_itseez"
+            ><sup>5</sup></a
+          >, I added Java to the list of supported languages for
+          <a href="https://opencv.org/">OpenCV</a> by modifying the interface
+          generator they used for other languages. I did it so I could use
+          Scala<a href="#fn_fp" class="footnote-ref"><sup>6</sup></a> for
+          research 😉 (Java, C++, lots of CMake<a href="#fn_cmake"
+            ><sup>7</sup></a
+          >).
+        </li>
+      </ul>
+
+      <p>I also organized two programs for the wider benefit of the company:</p>
+      <ul>
+        <li>
+          I taught a twice-weekly CrossFit class, using equipment Willow
+          purchased for the purpose.
+        </li>
+        <li>
+          When Willow had to lay off its kitchen staff, I organized company-wide
+          catering, paid for by the employees. This inspired me to create
+          <a
+            href="https://github.com/emchristiansen/FoodForThoughtSite/tree/master"
+            >Food for Thought</a
+          >
+          at UCSD (see <a href="#education">Education</a>).
+        </li>
+      </ul>
+
+      <h2>
+        <span class="title">Google</span>
+        <span class="location">Mountain View and Los Angeles, CA</span>
+      </h2>
+      <div class="subtitle">
+        <span class="role">PhD Intern</span>
+        <span class="date">2010 and 2011 Summers (6 months)</span>
+      </div>
+      <ul>
+        <li>
+          In 2011 I was at the LA office, working on Google Goggles research and
+          backend infrastructure, including adding the first high-dimension
+          log-time nearest-neighbor method to the scalable matching service (C++
+          and Python).
+        </li>
+        <li>
+          In 2010 I was at the Mountain View office, where I helped the
+          webcrawler to detect and appropriately handle auto-generated websites
+          (C++).
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h1 id="education">Education</h1>
+      <h2>
+        <span class="title">University of California, San Diego</span>
+        <span class="location">La Jolla, CA</span>
+      </h2>
+      <div class="subtitle">
+        <span class="role">PhD in CS</span>
+        <span class="date">2008 - 2018</span>
+      </div>
+
+      <p>
+        I got a PhD in computer science, with foci in computer vision and
+        machine learning, publishing in <a href="#ref_upper">ML theory</a>,
+        computer vision (<a href="#ref_grocery">link</a>,
+        <a href="#ref_locally">link</a>, <a href="#ref_face">link</a>,
+        <a href="#ref_camera">link</a>, <a href="#ref_camera">link</a>,
+        <a href="#ref_match">link</a>) , and
+        <a href="#ref_silico">deep learning</a>.
+      </p>
+
+      <p>
+        My initial focus was machine learning, working with
+        <a href="https://cseweb.ucsd.edu/~elkan/">Charles Elkan</a>. During this
+        time, I attended the
+        <a href="http://mlss.cc/">Machine Learning Summer School</a> at
+        Cambridge University, where I presented
+        <a href="#ref_upper">a paper on theoretical machine learning</a>.
+      </p>
+
+      <p>
+        In 2009, I switched my focus to computer vision with
+        <a href="https://tech.cornell.edu/people/serge-belongie/"
+          >Serge Belongie</a
+        >. My initial thesis area was in local descriptor methods, e.g.
+        <a
+          href="https://en.wikipedia.org/wiki/Scale-invariant_feature_transform"
+          >SIFT</a
+        >, which are used in computer vision to compare local regions of images.
+        They are building blocks for many computer vision applications,
+        including structure-from-motion and object detection and recognition.
+      </p>
+
+      <p>
+        Between 2010 and 2013, I did a total of three internships at
+        <a href="https://en.wikipedia.org/wiki/Willow_Garage">Willow Garage</a>
+        and Google amounting to 16 months.
+      </p>
+
+      <p>
+        Inspired by the internships, I developed the
+        <a
+          href="https://github.com/emchristiansen/FoodForThoughtSite/tree/master"
+          >Food for Thought (FFT)</a
+        ><a href="#fn_fft"><sup>8</sup></a>
+        program, paid for with grants and with the support of my advisor Serge.
+        FFT provided Google-style free food to all members of our lab at UCSD. I
+        believe it significantly improved lab morale and communication.
+        <a
+          href="https://github.com/emchristiansen/FoodForThoughtSite/blob/master/public/images/eating_panorama_retouched.jpg?raw=true"
+          >Here's a photo of some of the lab eating</a
+        >
+        and
+        <a
+          href="https://github.com/emchristiansen/FoodForThoughtSite/blob/master/public/images/fridge_closeup.jpg?raw=true"
+          >here's one of the stocked fridge</a
+        >.
+      </p>
+
+      <p>I also did some teaching:</p>
+
+      <ul>
+        <li>2014: TA for CSE 202, graduate algorithms (UCSD)</li>
+        <li>2013: Google Summer of Code mentor for OpenCV</li>
+        <li>2013: TA for CSE 255, data mining (UCSD)</li>
+        <li>2010: TA for CSE 252B, graduate computer vision (UCSD)</li>
+        <li>2010: TA for CSE 202, graduate algorithms (UCSD)</li>
+        <li>2009: TA for CSE 105, undergraduate computability (UCSD)</li>
+      </ul>
+
+      <p>
+        In 2014 I joined Google Research and continued my PhD part-time, while
+        pivoting to focus on deep learning applications in computer vision. I
+        <a href="#ref_thesis">finished in 2018</a>.
+      </p>
+
+      <h2>
+        <span class="title">Swarthmore College</span>
+        <span class="location">Swarthmore, PA</span>
+      </h2>
+      <div class="subtitle">
+        <span class="role">BA in Math (honors) with CS minor</span>
+        <span class="date">2004 - 2008</span>
+      </div>
+      <p>
+        While an undergrad at Swarthmore College, I worked in the summers with
+        <a
+          href="https://jacobsschool.ucsd.edu/giving/founding-faculty-and-emeriti/gary-cottrell"
+          >Gary Cottrell</a
+        >
+        on a variety of cognitive science topics, thanks to whom I developed an
+        interest in computer vision and biologically inspired models.
+      </p>
+
+      <p>
+        In 2008 I graduated with honors with a BA in math and a minor in
+        computer science.
+      </p>
+    </div>
+
+    <div class="section">
+      <h1 id="code_projects">Code projects</h1>
+
+      <p>
+        During my PhD, I kept sane by working on a number of side-projects, for
+        example:
+      </p>
+      <ul>
+        <li>
+          <a href="https://github.com/emchristiansen/PersistentMap"
+            >PersistentMap</a
+          >: A type-safe, boilerplate-free, key-value store for Scala.
+        </li>
+        <li>
+          <a href="https://github.com/emchristiansen/salve">salve</a>: A macro
+          and template library for adding some functional programming ideas to
+          C++.
+        </li>
+        <li>
+          <a href="https://github.com/emchristiansen/sbt-latex">sbt-latex</a>: A
+          build management tool for LaTeX (Scala).
+        </li>
+        <li>
+          <a href="https://github.com/emchristiansen/CharikarLSH">CharikarLSH</a
+          >: An implementation of Moses Charikar's method for approximate
+          nearest neighbor retrieval. Note, techniques like this are how vector
+          databases work (C++).
+        </li>
+        <li>
+          <a href="https://github.com/emchristiansen/mbtree">mbtree</a>: An
+          implementation of metric-ball trees for nearest neighbor search
+          (Scala).
+        </li>
+        <li>
+          <a href="https://github.com/emchristiansen/DistanceLSH">DistanceLSH</a
+          >: An implementation of a metric hashing for nearest neighbor search
+          (Haskell).
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h1 id="publications">Publications</h1>
+      <ul>
+        <li id="ref_wisdom">
+          <a href="https://openreview.net/forum?id=MvO2t0vbs4-">
+            X. Wang, D. Kondratyuk, E. Christiansen, K. M. Kitani, Y.
+            Movshovitz-Attias, and E. Eban, “Wisdom of Committees: An Overlooked
+            Approach To Faster and More Accurate Models,” in The Tenth
+            International Conference on Learning Representations, ICLR 2022,
+            Virtual Event, April 25-29, 2022. OpenReview.net, 2022.
+          </a>
+        </li>
+
+        <li id="ref_nas">
+          <a href="https://proceedings.mlr.press/v97/ying19a.html">
+            C. Ying, A. Klein, E. Christiansen, E. Real, K. Murphy, and F.
+            Hutter, “NAS-Bench-101: Towards reproducible neural architecture
+            search,” in International Conference on Machine Learning, 2019, pp.
+            7105–7114.
+          </a>
+        </li>
+
+        <li id="ref_assessing">
+          <a href="https://link.springer.com/article/10.1186/s12859-018-2087-4">
+            S. J. Yang, M. Berndl, D. M. Ando, M. Barch, A. Narayanaswamy, E.
+            Christiansen, S. Hoyer, C. Roat, J. Hung, C. T. Rueden, A. Shankar,
+            S. Finkbeiner, and P. Nelson, “Assessing microscope image focus
+            quality with deep learning,” BMC Bioinformatics, vol. 19, no. 1, pp.
+            77:1–77:9, 2018.
+          </a>
+        </li>
+
+        <li id="ref_silico">
+          <a
+            href="https://www.sciencedirect.com/science/article/pii/S0092867418303647"
+          >
+            E. Christiansen, S. J. Yang, D. M. Ando, A. Javaherian, G.
+            Skibinski, S. Lipnick, E. Mount, A. O’Neil, K. Shah, A. K. Lee, P.
+            Goyal, W. Fedus, R. Poplin, A. Esteva, M. Berndl, L. L. Rubin, P.
+            Nelson, and S. Finkbeiner, “In silico labeling: Predicting
+            fluorescent labels in unlabeled images,” Cell, vol. 173, no. 3, pp.
+            792–803.e19, 2018.
+          </a>
+        </li>
+
+        <li id="ref_processing">
+          <a href="https://patents.google.com/patent/US10692001B2/en">
+            P. C. Nelson, E. Christiansen, M. Berndl, and M. Frumkin,
+            “Processing cell images using neural networks,” May 15 2018, US
+            Patent 9,971,966.
+          </a>
+        </li>
+
+        <li id="ref_thesis">
+          <a href="https://escholarship.org/uc/item/40b479dh">
+            E. Christiansen, “From local descriptors to in silico labeling,”
+            Ph.D. dissertation, University of California, San Diego, 2018.
+          </a>
+        </li>
+
+        <li id="ref_match">
+          <a
+            href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=979c335623f3910dfde782ba3b25e52da1dc7312"
+          >
+            E. Christiansen, V. Rabaud, A. Ziegler, D. Kriegman, and S.
+            Belongie, “Match-time covariance for descriptors,” in British
+            Machine Vision Conference, BMVC 2013, Bristol, UK, September 9-13,
+            2013, 01 2013, pp. 12.1–12.11.
+          </a>
+        </li>
+
+        <li id="ref_face">
+          <a
+            href="https://link.springer.com/chapter/10.1007/978-3-642-41914-0_54"
+          >
+            E. Christiansen, I. S. Kwak, S. Belongie, and D. Kriegman, “Face box
+            shape and verification,” in Advances in Visual Computing, G. Bebis,
+            R. Boyle, B. Parvin, D. Koracin, B. Li, F. Porikli, V. Zordan, J.
+            Klosowski, S. Coquillart, X. Luo, M. Chen, and D. Gotz, Eds. Berlin,
+            Heidelberg: Springer Berlin Heidelberg, 2013, pp. 550–561.
+          </a>
+        </li>
+
+        <li id="ref_camera">
+          <a
+            href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=c8292aa152a962763185e12fd7391a1d6df60d07"
+          >
+            A. Flores, E. Christiansen, D. J. Kriegman, and S. J. Belongie,
+            “Camera distance from face images,” in Advances in Visual Computing
+            - 9th International Symposium, ISVC 2013, Rethymnon, Crete, Greece,
+            July 29-31, 2013. Proceedings, Part II, ser. Lecture Notes in
+            Computer Science, G. Bebis, R. Boyle, B. Parvin, D. Koracin, B. Li,
+            F. Porikli, V. B. Zordan, J. T. Klosowski, S. Coquillart, X. Luo, M.
+            Chen, and D. Gotz, Eds., vol. 8034. Springer, 2013, pp. 513–522.
+          </a>
+        </li>
+
+        <li id="ref_locally">
+          <a
+            href="https://proceedings.neurips.cc/paper_files/paper/2012/hash/c20ad4d76fe97759aa27a0c99bff6710-Abstract.html"
+          >
+            A. Ziegler, E. Christiansen, D. J. Kriegman, and S. J. Belongie,
+            “Locally Uniform Comparison Image Descriptor,” in Advances in Neural
+            Information Processing Systems 25: 26th Annual Conference on Neural
+            Information Processing Systems 2012. Proceedings of a meeting held
+            December 3-6, 2012, Lake Tahoe, Nevada, United States, P. L.
+            Bartlett, F. C. N. Pereira, C. J. C. Burges, L. Bottou, and K. Q.
+            Weinberger, Eds., 2012, pp. 1–9.
+          </a>
+        </li>
+
+        <li id="ref_grocery">
+          <a href="https://ieeexplore.ieee.org/abstract/document/5543576">
+            T. Winlock, E. Christiansen, and S. J. Belongie, “Toward real-time
+            grocery detection for the visually impaired,” in IEEE Conference on
+            Computer Vision and Pattern Recognition, CVPR Workshops 2010, San
+            Francisco, CA, USA, 13-18 June, 2010. IEEE Computer Society, 2010,
+            pp. 49–56.
+          </a>
+        </li>
+
+        <li id="ref_bound">
+          <a href="https://arxiv.org/abs/1309.7676">
+            E. Christiansen, “An upper bound on prototype set size for condensed
+            nearest neighbor,” arXiv preprint arXiv:1309.7676, 2013.
+          </a>
+          <ul>
+            <li>
+              I actually wrote this in 2009, when I was a new grad student and
+              still had a pretty strong math bent.
+            </li>
+          </ul>
+        </li>
+
+        <li id="ref_inversion">
+          <a
+            href="https://www.sciencedirect.com/science/article/pii/S0042698907005457"
+          >
+            J. P. McCleery, L. Zhang, L. Ge, Z. Wang, E. Christiansen, K. Lee,
+            and G. W. Cottrell, “The roles of visual expertise and visual input
+            in the face inversion effect: Behavioral and neurocomputational
+            evidence,” Vision Research, vol. 48, no. 5, pp. 703–715, 2008.
+          </a>
+        </li>
+
+        <li id="ref_echo">
+          <a
+            href="https://www.sciencedirect.com/science/article/abs/pii/S0893608007000354"
+          >
+            M. H. Tong, A. D. Bickett, E. Christiansen, and G. W. Cottrell,
+            “Learning grammatical structure with echo state networks,” Neural
+            Networks, vol. 20, no. 3, pp. 424–432, 2007.
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h1 id="miscellaneous">Miscellaneous</h1>
+      <div class="multicolumns">
+        <div class="column">
+          <h2>Things I do sometimes</h2>
+          <ul>
+            <li>CrossFit</li>
+            <li>Running</li>
+            <li>Burning Man</li>
+            <li><a href="https://www.aidslifecycle.org/">AIDS/LifeCycle</a></li>
+          </ul>
+        </div>
+        <div class="column">
+          <h2>Books I liked</h2>
+          <ul>
+            <li>
+              <a href="https://hpmor.com/"
+                >Harry Potter and the Methods of Rationality</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.goodreads.com/book/show/23444482-the-traitor-baru-cormorant"
+                >The Traitor Baru Cormorant</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.goodreads.com/book/show/61535.The_Selfish_Gene"
+                >The Selfish Gene</a
+              >
+            </li>
+            <li>
+              <a href="https://www.goodreads.com/en/book/show/23692271"
+                >Sapiens</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="column">
+          <h2>Non-research interests</h2>
+          <ul>
+            <li>Ethereum</li>
+            <li><a href="https://en.wikipedia.org/wiki/Tezos">Tezos</a></li>
+            <li>Rust</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h1 id="footnotes">Footnotes</h1>
+      <ol>
+        <li id="fn_lance">
+          <p>
+            With
+            <a href="https://www.linkedin.com/in/lance-hepler/">Lance Hepler</a
+            >, a friend who joined for 3 months between jobs.
+          </p>
+        </li>
+        <li id="fn_mtu">
+          <p>
+            This low-cost cloud provider was the origin for one of the most
+            annoying bugs I’ve recently experienced, related to VLAN
+            <a href="https://en.wikipedia.org/wiki/Maximum_transmission_unit"
+              >MTU mismatches</a
+            >
+            and randomly dropped packets.
+          </p>
+        </li>
+        <li id="fn_gcl">
+          <p>
+            The Generic Config Language, a Google-internal language for
+            deploying and configuring services.
+          </p>
+        </li>
+        <li id="fn_tpu">
+          <p>
+            I believe the bus was around 12.5 GB/s at the time or 83K ImageNet
+            examples / second.
+          </p>
+        </li>
+        <li id="fn_itseez">
+          <p>
+            At the time an OpenCV core contributor, later acquired by Intel.
+          </p>
+        </li>
+        <li id="fn_fp">
+          <p>
+            I’ve had an interest in functional programming ever since I took
+            <a href="https://ranjitjhala.github.io/">Ranjit Jhala</a>’s
+            programming languages class at UCSD. I am <em>so</em> happy Rust is
+            now making these ideas mainstream.
+          </p>
+        </li>
+        <li id="fn_cmake">
+          The hardest part was augmenting the build definition, which at the
+          time was was <em>hundreds</em> of pages of CMake files with all kinds
+          of terrible interdependencies, global mutable state, and of course no
+          types. To make sense of it I printed it all out and spread it over a
+          large conference table (it took all the space several pages deep), and
+          kept spatially re-arranging and marking it up until it made sense.
+        </li>
+        <li id="fn_fft">The website itself is now offline.</li>
+      </ol>
+    </div>
+  </body>
 </html>
