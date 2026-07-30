@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Eric Christiansen, PhD</title>
     <link
       rel="icon"
@@ -8,7 +10,7 @@
       href="https://www.gravatar.com/avatar/c8511325f6d8cb485382c0de40975b65.png"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&family=Montserrat:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;family=Roboto&amp;family=Montserrat:wght@400;700&amp;display=swap"
       rel="stylesheet"
     />
     <style>
@@ -226,7 +228,7 @@
         <span class="date">2022 July - 2024 May</span>
       </div>
       <p>
-        I found a market niche in the high frequency trading space and created
+        I found a market niche in the high-frequency trading space and created
         an autonomous trading system that has made >$300K profit so far on >$10M
         volume.
       </p>
@@ -283,10 +285,12 @@
         >,
         <a href="https://research.google/people/kevin-p-murphy/">Kevin Murphy</a
         >, and
-        <a href="https://research.google/people/sergey-ioffe/">Sergey Ioffe</a>.
+        <a href="https://www.linkedin.com/in/sergey-ioffe-1758821/"
+          >Sergey Ioffe</a
+        >.
       </p>
       <p>In that time I hosted 3 interns:</p>
-      <ul type="1">
+      <ul>
         <li>
           <a href="https://research.google/people/samuel-j-yang/">Samuel Yang</a
           >, who later joined Research.
@@ -297,14 +301,14 @@
           an <a href="https://artera.ai/">AI medical diagnostics company</a>.
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/william-liam-fedus-26547811/"
+          <a href="https://www.linkedin.com/in/liam-fedus-26547811/"
             >Liam Fedus</a
           >, who later joined Research and then joined OpenAI to help create
           ChatGPT.
         </li>
       </ul>
       <p>I also:</p>
-      <ul type="1">
+      <ul>
         <li>Interviewed 100s of candidates.</li>
         <li>
           Earned the “expert” designation in Google’s internal StackExchange
@@ -358,8 +362,7 @@
         >, the
         <a
           href="https://blog.research.google/2018/04/seeing-more-with-in-silico-labeling-of.html"
-        >
-          the Google Blog</a
+          >Google Research Blog</a
         >, and
         <a href="https://github.com/google/in-silico-labeling">open sourced</a>.
         It was also <a href="#ref_processing">patented</a> and led to the
@@ -445,8 +448,8 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
         be deprioritized.
       </p>
 
-      <h3 id="miscellaneous">Miscellaneous</h3>
-      <ul type="1">
+      <h3 id="google-miscellaneous">Miscellaneous</h3>
+      <ul>
         <li>
           I published on
           <a href="#ref_nas">neural architecture search</a> and
@@ -457,7 +460,7 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
           the work in model calibration and ensembling. That library was used to
           create the
           <a
-            href="https://www.androidpolice.com/motion-mode-on-the-pixel-6-speed/"
+            href="https://motion-mode.github.io/"
             >motion blur model</a
           >
           on Pixel devices.
@@ -475,9 +478,8 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
             >LabeledTensor</a
           >
           with
-          <a href="https://research.google/people/stephan-hoyer/"
-            >Stephan Hoyer</a
-          >, a TensorFlow library for endowing tensors with semantically
+          <a href="https://stephanhoyer.com/">Stephan Hoyer</a>, a TensorFlow
+          library for endowing tensors with semantically
           meaningful dimension and coordinate labels. Note the author
           attributions on GitHub are incorrect here, due to the way in which
           internal code was synced to GitHub; I wrote about half of the code.
@@ -598,8 +600,7 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
         machine learning, publishing in <a href="#ref_bound">ML theory</a>,
         computer vision (<a href="#ref_grocery">link</a>,
         <a href="#ref_locally">link</a>, <a href="#ref_face">link</a>,
-        <a href="#ref_camera">link</a>, <a href="#ref_camera">link</a>,
-        <a href="#ref_match">link</a>) , and
+        <a href="#ref_camera">link</a>, <a href="#ref_match">link</a>), and
         <a href="#ref_silico">deep learning</a>.
       </p>
 
@@ -609,7 +610,7 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
         time, I attended the
         <a href="http://mlss.cc/">Machine Learning Summer School</a> at
         Cambridge University, where I presented
-        <a href="#ref_upper">a paper on theoretical machine learning</a>.
+        <a href="#ref_bound">a paper on theoretical machine learning</a>.
       </p>
 
       <p>
@@ -727,7 +728,7 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
         </li>
         <li>
           <a href="https://github.com/emchristiansen/DistanceLSH">DistanceLSH</a
-          >: An implementation of a metric hashing for nearest neighbor search
+          >: An implementation of metric hashing for nearest neighbor search
           (Haskell).
         </li>
       </ul>
@@ -736,6 +737,21 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
     <div class="section">
       <h1 id="publications">Publications</h1>
       <ul>
+        <li id="ref_constitutional">
+          <a href="https://arxiv.org/abs/2501.18837">
+            M. Sharma et al., “Constitutional Classifiers: Defending against
+            Universal Jailbreaks across Thousands of Hours of Red Teaming,”
+            arXiv preprint arXiv:2501.18837, 2025.
+          </a>
+        </li>
+
+        <li id="ref_sabotage">
+          <a href="https://arxiv.org/abs/2410.21514">
+            J. Benton, M. Wagner, E. Christiansen, et al., “Sabotage Evaluations
+            for Frontier Models,” arXiv preprint arXiv:2410.21514, 2024.
+          </a>
+        </li>
+
         <li id="ref_wisdom">
           <a href="https://openreview.net/forum?id=MvO2t0vbs4-">
             X. Wang, D. Kondratyuk, E. Christiansen, K. M. Kitani, Y.
@@ -779,9 +795,9 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
         </li>
 
         <li id="ref_processing">
-          <a href="https://patents.google.com/patent/US10692001B2/en">
+          <a href="https://patents.google.com/patent/US9971966B2/en">
             P. C. Nelson, E. Christiansen, M. Berndl, and M. Frumkin,
-            “Processing cell images using neural networks,” May 15 2018, US
+            “Processing cell images using neural networks,” May 15, 2018, US
             Patent 9,971,966.
           </a>
         </li>
@@ -794,9 +810,7 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
         </li>
 
         <li id="ref_match">
-          <a
-            href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=979c335623f3910dfde782ba3b25e52da1dc7312"
-          >
+          <a href="https://doi.org/10.5244/C.27.12">
             E. Christiansen, V. Rabaud, A. Ziegler, D. Kriegman, and S.
             Belongie, “Match-time covariance for descriptors,” in British
             Machine Vision Conference, BMVC 2013, Bristol, UK, September 9-13,
@@ -817,9 +831,7 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
         </li>
 
         <li id="ref_camera">
-          <a
-            href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=c8292aa152a962763185e12fd7391a1d6df60d07"
-          >
+          <a href="https://doi.org/10.1007/978-3-642-41939-3_50">
             A. Flores, E. Christiansen, D. J. Kriegman, and S. J. Belongie,
             “Camera distance from face images,” in Advances in Visual Computing
             - 9th International Symposium, ISVC 2013, Rethymnon, Crete, Greece,
@@ -987,7 +999,7 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
         </li>
         <li id="fn_cmake">
           The hardest part was augmenting the build definition, which at the
-          time was was <em>hundreds</em> of pages of CMake files with all kinds
+          time was <em>hundreds</em> of pages of CMake files with all kinds
           of terrible interdependencies, global mutable state, and of course no
           types. To make sense of it I printed it all out and spread it over a
           large conference table (it took all the space several pages deep), and
