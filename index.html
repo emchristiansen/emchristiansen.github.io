@@ -217,23 +217,35 @@
       }
 
       .theme-toggle {
+        display: grid;
+        width: 30px;
+        height: 30px;
         margin-left: auto;
         padding: 0;
-        border: 0;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        place-items: center;
         color: var(--muted);
         background: transparent;
-        font: inherit;
+        font-family: inherit;
+        font-size: 1rem;
+        line-height: 1;
         cursor: pointer;
       }
 
       .theme-toggle:hover {
+        border-color: var(--accent);
         color: var(--accent);
       }
 
       .theme-toggle:focus-visible {
-        border-radius: 3px;
         outline: 3px solid color-mix(in srgb, var(--accent) 28%, transparent);
         outline-offset: 3px;
+      }
+
+      .theme-icon {
+        display: block;
+        line-height: 1;
       }
 
       main {
@@ -466,8 +478,14 @@
       <a href="#code_projects">Code</a>
       <a href="#publications">Publications</a>
       <a href="#miscellaneous">Miscellaneous</a>
-      <button class="theme-toggle" type="button" aria-pressed="false">
-        Dark mode
+      <button
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+        title="Switch to dark mode"
+      >
+        <span class="theme-icon" aria-hidden="true">☀</span>
       </button>
     </nav>
 
@@ -1333,12 +1351,18 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
       (() => {
         const root = document.documentElement;
         const toggle = document.querySelector(".theme-toggle");
+        const icon = toggle.querySelector(".theme-icon");
         const systemTheme = matchMedia("(prefers-color-scheme: dark)");
 
         const updateToggle = () => {
           const isDark = root.dataset.theme === "dark";
-          toggle.textContent = isDark ? "Light mode" : "Dark mode";
+          const label = isDark
+            ? "Switch to light mode"
+            : "Switch to dark mode";
+          icon.textContent = isDark ? "☾" : "☀";
+          toggle.setAttribute("aria-label", label);
           toggle.setAttribute("aria-pressed", String(isDark));
+          toggle.setAttribute("title", label);
         };
 
         toggle.addEventListener("click", () => {
