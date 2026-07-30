@@ -4,130 +4,440 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Eric Christiansen, PhD</title>
+    <script>
+      (() => {
+        try {
+          const savedTheme = localStorage.getItem("theme");
+          const systemTheme = matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+          document.documentElement.dataset.theme = savedTheme || systemTheme;
+        } catch {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
     <link
       rel="icon"
       type="image/png"
       href="https://www.gravatar.com/avatar/c8511325f6d8cb485382c0de40975b65.png"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;family=Roboto&amp;family=Montserrat:wght@400;700&amp;display=swap"
-      rel="stylesheet"
-    />
     <style>
+      :root {
+        color-scheme: light;
+        --background: #fafaf8;
+        --surface: #ffffff;
+        --text: #202124;
+        --muted: #62666d;
+        --faint: #8b9097;
+        --border: #dedfdc;
+        --accent: #1857c9;
+        --accent-hover: #123f91;
+        --content-width: 900px;
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --background: #131416;
+        --surface: #191b1e;
+        --text: #ececea;
+        --muted: #b4b6bb;
+        --faint: #888c94;
+        --border: #33363b;
+        --accent: #8ab4f8;
+        --accent-hover: #b6cefa;
+      }
+
       * {
-        box-sizing: border-box; /* This ensures padding is included within the element's total width and height */
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--background);
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        background: var(--background);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+          sans-serif;
+        font-size: 16px;
+        line-height: 1.68;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.18em;
+      }
+
+      a:hover {
+        color: var(--accent-hover);
+        text-decoration-color: currentColor;
+      }
+
+      a:focus-visible {
+        border-radius: 3px;
+        outline: 3px solid color-mix(in srgb, var(--accent) 28%, transparent);
+        outline-offset: 3px;
+      }
+
+      p {
+        margin: 0 0 1.1em;
+      }
+
+      ul,
+      ol {
+        margin: 0 0 1.35em;
+        padding-left: 1.3em;
+      }
+
+      li {
+        margin: 0.34em 0;
+      }
+
+      .skip-link {
+        position: fixed;
+        z-index: 10;
+        top: 12px;
+        left: 12px;
+        padding: 9px 13px;
+        border-radius: 6px;
+        color: var(--surface);
+        background: var(--text);
+        transform: translateY(-180%);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
       }
 
       .container {
         display: flex;
         align-items: center;
-        padding: 20px;
-        max-width: 1000px; /* or any other value you see fit */
-        margin-left: auto;
-        margin-right: auto;
+        gap: 38px;
+        max-width: var(--content-width);
+        margin: 0 auto;
+        padding: 64px 28px 46px;
       }
 
       .image {
-        flex: 1;
-        padding: 10px;
+        flex: 0 0 164px;
+      }
+
+      .image img {
+        display: block;
+        width: 164px;
+        height: 164px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        object-fit: cover;
+        object-position: 50% 34%;
       }
 
       .about {
-        flex: 3;
-        padding: 10px;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .about h1 {
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 3.05rem);
+        font-weight: 720;
+        letter-spacing: -0.045em;
+        line-height: 1.04;
+      }
+
+      .tagline {
+        margin: 0.55em 0 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+        font-weight: 500;
+      }
+
+      .socials {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 1em 0 1.5em;
+        color: var(--muted);
+        font-size: 0.92rem;
+        font-weight: 600;
+      }
+
+      .socials > * {
+        white-space: nowrap;
+      }
+
+      .socials > * + *::before {
+        margin: 0 0.68em;
+        color: var(--border);
+        content: "/";
+      }
+
+      .socials a {
+        text-decoration: none;
+      }
+
+      .about > p:not(.tagline):not(.updated) {
+        max-width: 67ch;
+      }
+
+      .updated {
+        margin: 1.55em 0 0;
+        color: var(--faint);
+        font-size: 0.8rem;
+        font-weight: 650;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .section-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45em 1.25em;
+        max-width: var(--content-width);
+        margin: 0 auto;
+        padding: 0 28px 22px;
+        font-size: 0.86rem;
+        font-weight: 680;
+      }
+
+      .section-nav a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .section-nav a:hover {
+        color: var(--accent);
+      }
+
+      .theme-toggle {
+        margin-left: auto;
+        padding: 0;
+        border: 0;
+        color: var(--muted);
+        background: transparent;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .theme-toggle:hover {
+        color: var(--accent);
+      }
+
+      .theme-toggle:focus-visible {
+        border-radius: 3px;
+        outline: 3px solid color-mix(in srgb, var(--accent) 28%, transparent);
+        outline-offset: 3px;
+      }
+
+      main {
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
       }
 
       .section {
-        padding: 20px;
-        border-top: 1px solid #ccc;
-        max-width: 1000px; /* or any other value you see fit */
-        margin-left: auto;
-        margin-right: auto;
+        max-width: var(--content-width);
+        margin: 0 auto;
+        padding: 58px 28px;
       }
 
-      body {
-        font-family: "Roboto", sans-serif;
+      .section + .section {
+        border-top: 1px solid var(--border);
       }
 
-      h1 {
-        font-family: "Roboto", sans-serif;
+      .section > h1 {
+        margin: 0 0 1.15em;
+        font-size: clamp(1.65rem, 4vw, 2.15rem);
+        font-weight: 730;
+        letter-spacing: -0.035em;
+        line-height: 1.12;
+        scroll-margin-top: 24px;
       }
 
-      h2 {
-        font-family: "Lato", sans-serif;
+      .section > h2 {
         display: flex;
+        align-items: baseline;
         justify-content: space-between;
+        gap: 24px;
+        margin: 2.35em 0 0.18em;
+        font-size: 1.22rem;
+        font-weight: 720;
+        letter-spacing: -0.018em;
+        line-height: 1.3;
       }
 
-      h3 {
-        font-family: "Montserrat", sans-serif;
+      .section > h1 + h2 {
+        margin-top: 0;
+      }
+
+      .section h3 {
+        margin: 2.1em 0 0.55em;
+        font-size: 1rem;
+        font-weight: 760;
+        letter-spacing: 0.055em;
+        line-height: 1.35;
+        text-transform: uppercase;
       }
 
       .subtitle {
-        font-family: "Lato", sans-serif;
         display: flex;
         justify-content: space-between;
-        margin-top: -1em;
+        gap: 24px;
+        margin: 0 0 1.18em;
+        color: var(--muted);
+        font-size: 0.92rem;
       }
 
-      .location {
+      .location,
+      .date {
+        flex: 0 0 auto;
+        color: var(--faint);
+        font-size: 0.87rem;
+        font-weight: 520;
         text-align: right;
       }
 
       .role {
-        font-style: italic;
-        font-size: 1.2em;
-      }
-
-      .date {
-        font-style: italic;
-        font-size: 1.2em;
-        text-align: right;
+        font-weight: 650;
       }
 
       .multicolumns {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px;
       }
 
       .column {
-        flex: 1;
-        padding: 0 10px; /* Optional: Adds some space between the columns */
+        min-width: 0;
       }
 
-      .socials {
-        /* font-style: italic; */
-        font-family: "Montserrat", sans-serif;
-        /* font-size: 0.9em; */
-        text-align: left;
-        display: flex;
-        justify-content: left;
-        gap: 10px;
-        margin-top: 0.9em;
+      .column h2 {
+        margin: 0 0 0.65em;
+        font-size: 1rem;
+      }
+
+      #publications + ul {
+        padding-left: 1.15em;
+      }
+
+      #publications + ul > li {
+        margin: 0 0 0.8em;
+        padding-left: 0.2em;
+      }
+
+      #publications + ul > li > a {
+        color: var(--text);
+        text-decoration-color: transparent;
+      }
+
+      #publications + ul > li > a:hover {
+        color: var(--accent-hover);
+        text-decoration-color: currentColor;
+      }
+
+      #footnotes + ol {
+        color: var(--muted);
+        font-size: 0.91rem;
+      }
+
+      code {
+        padding: 0.08em 0.3em;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        background: var(--background);
+        font-size: 0.88em;
+      }
+
+      @media (max-width: 720px) {
+        body {
+          font-size: 15.5px;
+        }
+
+        .container {
+          display: block;
+          padding-top: 36px;
+        }
+
+        .image {
+          margin-bottom: 24px;
+        }
+
+        .image img {
+          width: 116px;
+          height: 116px;
+          border-radius: 14px;
+        }
+
+        .about h1 {
+          font-size: 2.25rem;
+        }
+
+        .section {
+          padding-top: 44px;
+          padding-bottom: 44px;
+        }
+
+        .section > h2,
+        .subtitle {
+          display: block;
+        }
+
+        .section > h2 {
+          margin-bottom: 0.28em;
+        }
+
+        .location,
+        .date {
+          display: block;
+          margin-top: 0.25em;
+          text-align: left;
+        }
+
+        .multicolumns {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .socials > * + *::before {
+          margin-right: 0.55em;
+          margin-left: 0.55em;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="container">
+    <a class="skip-link" href="#work-and-research">Skip to content</a>
+    <header class="container">
       <div class="image">
-        <img src="eric.jpg" alt="Profile Image" style="width: 100%" />
+        <img src="eric.jpg" alt="Eric Christiansen" />
       </div>
       <div class="about">
         <h1>Eric Christiansen, PhD</h1>
-        <div class="subtitle">
-          <span class="role">
-            Software engineer experienced in AI research and infrastructure.
-          </span>
-        </div>
+        <p class="tagline">
+          Software engineer experienced in AI research and infrastructure.
+        </p>
         <div class="socials">
           <a href="https://github.com/emchristiansen">GitHub</a>
-          |
           <a href="https://scholar.google.com/citations?user=Sz2GtLoAAAAJ"
             >Scholar</a
           >
-          |
           <a href="https://www.linkedin.com/in/ericmc-ai">LinkedIn</a>
-          | eric at emchristiansen dot com
+          <span>eric at emchristiansen dot com</span>
         </div>
 
         <p>
@@ -146,12 +456,22 @@
           For a condensed version of this website, please email me for my
           resume.
         </p>
-        <p>
-          <em>Updated 2026 July.</em>
-        </p>
+        <p class="updated">Updated 2026 July</p>
       </div>
-    </div>
+    </header>
 
+    <nav class="section-nav" aria-label="Page sections">
+      <a href="#work-and-research">Work &amp; research</a>
+      <a href="#education">Education</a>
+      <a href="#code_projects">Code</a>
+      <a href="#publications">Publications</a>
+      <a href="#miscellaneous">Miscellaneous</a>
+      <button class="theme-toggle" type="button" aria-pressed="false">
+        Dark mode
+      </button>
+    </nav>
+
+    <main>
     <div class="section">
       <h1 id="work-and-research">Work and research</h1>
       <h2>
@@ -1008,5 +1328,38 @@ was the first version of what became the Vertex AI hyperparameter tuner. Used C+
         <li id="fn_fft">The website itself is now offline.</li>
       </ol>
     </div>
+    </main>
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const toggle = document.querySelector(".theme-toggle");
+        const systemTheme = matchMedia("(prefers-color-scheme: dark)");
+
+        const updateToggle = () => {
+          const isDark = root.dataset.theme === "dark";
+          toggle.textContent = isDark ? "Light mode" : "Dark mode";
+          toggle.setAttribute("aria-pressed", String(isDark));
+        };
+
+        toggle.addEventListener("click", () => {
+          const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+          root.dataset.theme = nextTheme;
+          try {
+            localStorage.setItem("theme", nextTheme);
+          } catch {}
+          updateToggle();
+        });
+
+        systemTheme.addEventListener("change", (event) => {
+          try {
+            if (localStorage.getItem("theme")) return;
+          } catch {}
+          root.dataset.theme = event.matches ? "dark" : "light";
+          updateToggle();
+        });
+
+        updateToggle();
+      })();
+    </script>
   </body>
 </html>
